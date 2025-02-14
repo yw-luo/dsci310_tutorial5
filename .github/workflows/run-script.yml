@@ -1,0 +1,20 @@
+name: Run Bash Script in Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Build Docker Image
+      run: docker build -t script_container .
+
+    - name: Run Bash Script in Docker
+      run: docker run --rm script_container
